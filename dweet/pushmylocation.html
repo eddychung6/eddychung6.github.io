@@ -7,78 +7,91 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-NickName
-<button id="btnDweet">L</button>
+<button id="btnDweet">start</button>
+<button id="btnDweetStop">stop</button>
 </body>
 <script>
 $( document ).ready(function() {
+	var watcherID = 0;
     $("#btnDweet").click(function(){
-		console.log("btn click");
+		//console.log("btn click");
 		//var JSON = {"content1":$("#textJSON").val()};
 		//todweet(JSON);
-		setInterval(theGetLocation, 10000);
+		//setInterval(theGetLocation, 10000);
+		theGetLocation();
+	});
+	$("#btnDweetStop").click(function(){
+		console.log("got watcher ID:");
+		console.log(watcherID);
+		//theGetLocation();
+		navigator.geolocation.clearWatch(watcherID);
 	});
 	
 	
 	const todweet = (msgJSON) => {
 		dweetio.dweet_for("NbMHpe", msgJSON, function(err, dweet){
+		console.log(dweet);
 
-		console.log(dweet.thing); // "my-thing"
-		console.log(dweet.content); // The content of the dweet
-		console.log(dweet.created); // The create date of the dweet
+
+		//console.log(dweet.thing); // "my-thing"
+		//console.log(dweet.content); // The content of the dweet
+		//console.log(dweet.created); // The create date of the dweet
 
 		});
 	};
 	
 	var theGetLocation = function getLocation() {
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
+			//navigator.geolocation.getCurrentPosition(showPosition);
+			
+			function success(position) {
+				showPosition(position.coords.latitude, position.coords.longitude);
+			}
+			
+			function error() {
+				alert('Sorry, no position available.');
+			}
+
+			const options = {
+			  enableHighAccuracy: true, 
+			  maximumAge: 30000, 
+			  timeout: 30000
+			};
+			
+			//const watchID = navigator.geolocation.watchPosition((position) => {
+				//showPosition(position.coords.latitude, position.coords.longitude);
+			//});
+			
+			const watchID = navigator.geolocation.watchPosition(success, error, options);
+			console.log("watchID:");
+			console.log(watchID);
+			watcherID = watchID;
+			
+			
+			
+			
 		} else { 
 			//x.innerHTML = "Geolocation is not supported by this browser.";
 		}
 	}
 	
-	function showPosition(position) {
-	
+	function showPosition(latitude,longitude) {
+		
 		var geo = {
-			Latitude:position.coords.latitude,
-			Longitude:position.coords.longitude,
+			"Latitude":latitude,
+			"Longitude":longitude,
 		};
+		
 		console.log("Got GEO info:");
+		console.log("Dweet to update:")
 		//console.log(geo);	
 		//update dweet
-		var JsonGeoData = JSON.stringify(geo);
-		console.log(JsonGeoData);
+		//var JsonGeoData = JSON.stringify(geo);
+		//console.log(JsonGeoData);
+		todweet(geo);
 	}
 
 	
-});
-dweetio.get_latest_dweet_for("NbMHpe", function(err, dweet){
-
-    var dweet = dweet[0]; // Dweet is always an array of 1
-
-    //console.log(dweet.thing); // The generated name
-    //console.log(dweet.content); // The content of the dweet
-    //console.log(dweet.created); // The create date of the dweet
-
-});
-/*dweetio.get_all_dweets_for("NbMHpe", function(err, dweets){
-
-    // Dweets is an array of dweets
-    for(theDweet in dweets)
-    {
-        var dweet = dweets[theDweet];
-
-        console.log(dweet.thing); // The generated name
-        console.log(dweet.content); // The content of the dweet
-        console.log(dweet.created); // The create date of the dweet
-    }
-
-});*/
-dweetio.listen_for("NbMHpe", function(dweet){
-
-    console.log("news");
-
 });
 
 </script>
