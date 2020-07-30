@@ -1,0 +1,85 @@
+<script>
+/*
+const promise = new Promise((resolve, reject) => {
+  const request = new XMLHttpRequest();
+
+  request.open('GET', 'https://dweet.io/get/latest/dweet/for/NbMHpe');
+  request.onload = () => {
+    if (request.status === 200) {
+      resolve(request.response); // we got data here, so resolve the Promise
+    } else {
+      reject(Error(request.statusText)); // status is not 200 OK, so reject
+    }
+  };
+
+  request.onerror = () => {
+    reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+  };
+
+  request.send(); // send the request
+});
+*/
+
+//console.log('Asynchronous request made.');
+
+/*setInterval(function(){ promise.then((data) => {
+  //console.log('Got data! Promise fulfilled.');
+  //console.log(JSON.parse(data));
+	var jsonresult = JSON.parse(data);
+	var currentdate = new Date(); 
+	var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+  //console.log(jsonresult.with[0].content.body);
+  console.log(datetime);
+  document.body.textContent = jsonresult.with[0].content.body;
+}, (error) => {
+  console.log('Promise rejected.');
+  console.log(error.message);
+}); }, 5000);*/
+
+var callloaddoc = function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      
+	var jsonresult = JSON.parse(this.responseText);
+	console.log(jsonresult);
+	var currentdate = new Date(); 
+	var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+  //console.log(jsonresult.with[0].content.body);
+  //console.log(datetime);
+  //document.body.textContent = jsonresult.with[0].content.content;
+		var allcontent = jsonresult.with[0].content;
+		console.log(allcontent);
+    }
+  };
+  xhttp.open("GET", "https://dweet.io/get/latest/dweet/for/NbMHpe", true);
+  xhttp.send();
+}
+
+setInterval(callloaddoc, 10000);
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    //x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+	console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
+  //x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+}
+getLocation();
+
+</script>
