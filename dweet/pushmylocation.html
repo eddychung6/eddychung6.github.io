@@ -47,6 +47,12 @@ $( document ).ready(function() {
 	
 	const todweet = (msgJSON) => {
 		dweetio.dweet_for("NbMHpe", msgJSON, function(err, dweet){
+		if (!dweet){
+			console.log("success update to Dweet");
+		}else{
+			console.log("failed update to Dweet")
+		}
+		console.log("----------");
 		/* console.log("dweet updated resule:")
 		console.log(dweet);
 		console.log("----------"); */
@@ -62,7 +68,7 @@ $( document ).ready(function() {
 	var theGetLocation = function getLocation() {
 		if (navigator.geolocation) {
 			function success(position) {
-				//console.log("Got the update GEO information...");
+				console.log("Got the update GEO information by watcher");
 				updatePosition(position.coords.latitude, position.coords.longitude);
 			}
 			function error() {
@@ -105,7 +111,7 @@ $( document ).ready(function() {
 			"Latitude":latitude,
 			"Longitude":longitude,
 		};
-		//console.log("Dweet to update")
+		console.log("Update position to Dweet")
 		//console.log(geo);	
 		//update dweet
 		//var JsonGeoData = JSON.stringify(geo);
