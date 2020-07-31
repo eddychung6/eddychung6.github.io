@@ -21,12 +21,19 @@
 <script>
 $( document ).ready(function() {
 	var watcherID = 0;
-	//mapboxgl.accessToken = 'pk.eyJ1IjoiZWRkeWNodW5nIiwiYSI6ImNrZDg3YXptYjA2dHQycnAyaXg0Y2cxY2MifQ.QqgFaTvEVw_obXSHrzDfIw';
     $("#btnDweet").click(function(){
 		//console.log("btn click");
 		//var JSON = {"content1":$("#textJSON").val()};
 		//todweet(JSON);
 		//setInterval(theGetLocation, 10000);
+		/* mapboxgl.accessToken = 'pk.eyJ1IjoiZWRkeWNodW5nIiwiYSI6ImNrZDg3YXptYjA2dHQycnAyaXg0Y2cxY2MifQ.QqgFaTvEVw_obXSHrzDfIw';
+		var ll = new mapboxgl.LngLat(dweet.content.Longitude,dweet.content.Latitude);
+		map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+			center: [ll.lng, ll.lat], // starting position [lng, lat]
+			zoom: 15, // starting zoom
+		}); */
 		//$("#map").css('display', 'block');
 		theGetLocation();
 	});
