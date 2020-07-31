@@ -87,6 +87,7 @@ $( document ).ready(function() {
 					center: [ll.lng, ll.lat], // starting position [lng, lat]
 					zoom: 12, // starting zoom
 				});
+				map.addControl(new mapboxgl.FullscreenControl());
 				const NCObject = {
 					showCompass:true,
 					showZoom:true,
