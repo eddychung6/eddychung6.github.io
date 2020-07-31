@@ -8,15 +8,15 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
 <style>
-	#map{
-		display:block;
+	#map { 
+		position: absolute; top: 0; bottom: 0; width: 100%; 
 	}
 </style>
 </head>
 <body>
 <button id="btnDweet">start</button>
 <button id="btnDweetStop">stop</button>
-<div id='map' style='width: 500px; height: 400px;'></div>
+<div id='map'></div>
 </body>
 <script>
 $( document ).ready(function() {
