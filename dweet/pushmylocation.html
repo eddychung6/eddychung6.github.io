@@ -100,7 +100,10 @@ $( document ).ready(function() {
 		todweet(geo);
 	}
 
-	
+	dweetio.listen_for("NbMHpe", function(dweet){
+		console.log("news:");
+		console.log(dweet);
+	});	
 });
 
 </script>
