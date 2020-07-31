@@ -42,40 +42,32 @@ $( document ).ready(function() {
 	
 	var theGetLocation = function getLocation() {
 		if (navigator.geolocation) {
-			//navigator.geolocation.getCurrentPosition(showPosition);
-			
 			function success(position) {
-				showPosition(position.coords.latitude, position.coords.longitude);
+				updatePosition(position.coords.latitude, position.coords.longitude);
 			}
-			
 			function error() {
 				alert('Sorry, no position available.');
 			}
-
 			const options = {
 			  enableHighAccuracy: true, 
 			  maximumAge: 30000, 
 			  timeout: 30000
 			};
-			
 			//const watchID = navigator.geolocation.watchPosition((position) => {
-				//showPosition(position.coords.latitude, position.coords.longitude);
+				//updatePosition(position.coords.latitude, position.coords.longitude);
 			//});
-			
 			const watchID = navigator.geolocation.watchPosition(success, error, options);
 			console.log("watchID:");
 			console.log(watchID);
+			//return the watchID for stopping
 			watcherID = watchID;
-			
-			
-			
-			
 		} else { 
+			alert("Geolocation is not supported by this browser.");
 			//x.innerHTML = "Geolocation is not supported by this browser.";
 		}
 	}
 	
-	function showPosition(latitude,longitude) {
+	function updatePosition(latitude,longitude) {
 		
 		var geo = {
 			"Latitude":latitude,
