@@ -20,6 +20,8 @@
 </body>
 <script>
 $( document ).ready(function() {
+	var maker;
+	var map;
 	var watcherID = 0;
     $("#btnDweet").click(function(){
 		//console.log("btn click");
@@ -67,9 +69,12 @@ $( document ).ready(function() {
 	
 	var theGetLocation = function getLocation() {
 		if (navigator.geolocation) {
-			function success(position) {
+			function success(position) { //for watchPosition, whenever is has been triggered
 				console.log("Got the update GEO information by watcher");
 				updatePosition(position.coords.latitude, position.coords.longitude);
+				maker.remove();
+				var ll = new mapboxgl.LngLat(position.coords.longitude,position.coords.latitude);
+				maker = new mapboxgl.Marker().setLngLat([ll.lng, ll.lat]).addTo(map);
 			}
 			function error() {
 				alert('Sorry, no position available.');
@@ -87,6 +92,7 @@ $( document ).ready(function() {
 				});
 				console.log("map created:");
 				console.log(map);
+				maker = new mapboxgl.Marker().setLngLat([ll.lng, ll.lat]).addTo(map);
 				//$("#map").css('display', 'block');
 			}
 			//for watchPosition
