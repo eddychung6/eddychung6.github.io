@@ -30,7 +30,9 @@ $( document ).ready(function() {
 	
 	const todweet = (msgJSON) => {
 		dweetio.dweet_for("NbMHpe", msgJSON, function(err, dweet){
+		consoel.log("dweet updated resule:")
 		console.log(dweet);
+		console.log("----------");
 
 
 		//console.log(dweet.thing); // "my-thing"
@@ -57,8 +59,7 @@ $( document ).ready(function() {
 				//updatePosition(position.coords.latitude, position.coords.longitude);
 			//});
 			const watchID = navigator.geolocation.watchPosition(success, error, options);
-			console.log("watchID:");
-			console.log(watchID);
+			console.log("watchID No:"+watchID);
 			//return the watchID for stopping
 			watcherID = watchID;
 		} else { 
@@ -74,8 +75,8 @@ $( document ).ready(function() {
 			"Longitude":longitude,
 		};
 		
-		console.log("Got GEO info:");
-		console.log("Dweet to update:")
+		console.log("Got GEO info->");
+		console.log("Dweet to update->")
 		//console.log(geo);	
 		//update dweet
 		//var JsonGeoData = JSON.stringify(geo);
