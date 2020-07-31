@@ -47,11 +47,10 @@ $( document ).ready(function() {
 	
 	const todweet = (msgJSON) => {
 		dweetio.dweet_for("NbMHpe", msgJSON, function(err, dweet){
-		if (!dweet){
-			console.log("success update to Dweet");
-		}else{
+		if (typeof(dweet)=='undefined'){
 			console.log("failed update to Dweet")
-			console.log(err);
+		}else{
+			console.log("success update to Dweet");
 		}
 		console.log("----------");
 		/* console.log("dweet updated resule:")
