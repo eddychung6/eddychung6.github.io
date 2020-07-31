@@ -90,9 +90,17 @@ $( document ).ready(function() {
 					center: [ll.lng, ll.lat], // starting position [lng, lat]
 					zoom: 12, // starting zoom
 				});
+				const NCObject = {
+					showCompass:true,
+					showZoom:true,
+					visualizePitch:true
+				};
+				var nav = new NavigationControl(NCObject);
+				map.addControl(nav,'top-left');
 				console.log("map created:");
 				//console.log(map);
 				maker = new mapboxgl.Marker().setLngLat([ll.lng, ll.lat]).addTo(map);
+				
 				//$("#map").css('display', 'block');
 			}
 			//for watchPosition
