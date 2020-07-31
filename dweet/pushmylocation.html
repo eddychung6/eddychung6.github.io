@@ -38,8 +38,8 @@ $( document ).ready(function() {
 		theGetLocation();
 	});
 	$("#btnDweetStop").click(function(){
-		console.log("got watcher ID:");
-		console.log(watcherID);
+		/* console.log("got watcher ID:");
+		console.log(watcherID); */
 		//theGetLocation();
 		navigator.geolocation.clearWatch(watcherID);
 	});
@@ -47,9 +47,9 @@ $( document ).ready(function() {
 	
 	const todweet = (msgJSON) => {
 		dweetio.dweet_for("NbMHpe", msgJSON, function(err, dweet){
-		console.log("dweet updated resule:")
+		/* console.log("dweet updated resule:")
 		console.log(dweet);
-		console.log("----------");
+		console.log("----------"); */
 
 
 		//console.log(dweet.thing); // "my-thing"
@@ -62,7 +62,7 @@ $( document ).ready(function() {
 	var theGetLocation = function getLocation() {
 		if (navigator.geolocation) {
 			function success(position) {
-				console.log("Got the update GEO information...");
+				//console.log("Got the update GEO information...");
 				updatePosition(position.coords.latitude, position.coords.longitude);
 			}
 			function error() {
@@ -105,7 +105,7 @@ $( document ).ready(function() {
 			"Latitude":latitude,
 			"Longitude":longitude,
 		};
-		console.log("Dweet to update")
+		//console.log("Dweet to update")
 		//console.log(geo);	
 		//update dweet
 		//var JsonGeoData = JSON.stringify(geo);
@@ -115,8 +115,8 @@ $( document ).ready(function() {
 
 });
 	dweetio.listen_for("NbMHpe", function(dweet){
-		console.log("news:");
-		console.log(dweet);
+		console.log("news:"); 
+		//console.log(dweet);
 	});	
 
 </script>
