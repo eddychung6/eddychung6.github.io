@@ -5,19 +5,29 @@
 <head>
 <script src="//dweet.io/client/dweet.io.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+<style>
+	#map{
+		display:none;
+	}
+</style>
 </head>
 <body>
 <button id="btnDweet">start</button>
 <button id="btnDweetStop">stop</button>
+<div id='map' style='width: 500px; height: 400px;'></div>
 </body>
 <script>
 $( document ).ready(function() {
 	var watcherID = 0;
+	//mapboxgl.accessToken = 'pk.eyJ1IjoiZWRkeWNodW5nIiwiYSI6ImNrZDg3YXptYjA2dHQycnAyaXg0Y2cxY2MifQ.QqgFaTvEVw_obXSHrzDfIw';
     $("#btnDweet").click(function(){
 		//console.log("btn click");
 		//var JSON = {"content1":$("#textJSON").val()};
 		//todweet(JSON);
 		//setInterval(theGetLocation, 10000);
+		$("#map").css('display', 'block');
 		theGetLocation();
 	});
 	$("#btnDweetStop").click(function(){
@@ -45,6 +55,7 @@ $( document ).ready(function() {
 	var theGetLocation = function getLocation() {
 		if (navigator.geolocation) {
 			function success(position) {
+				console.log("Got the update GEO information...");
 				updatePosition(position.coords.latitude, position.coords.longitude);
 			}
 			function error() {
@@ -74,9 +85,7 @@ $( document ).ready(function() {
 			"Latitude":latitude,
 			"Longitude":longitude,
 		};
-		
-		console.log("Got GEO info->");
-		console.log("Dweet to update->")
+		console.log("Dweet to update")
 		//console.log(geo);	
 		//update dweet
 		//var JsonGeoData = JSON.stringify(geo);
