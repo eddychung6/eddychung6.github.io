@@ -83,11 +83,10 @@ $( document ).ready(function() {
 				var ll = new mapboxgl.LngLat(position.coords.longitude,position.coords.latitude);
 				map = new mapboxgl.Map({
 					container: 'map',
-					style: 'mapbox://styles/mapbox/dark-v10', // stylesheet location//styles/mapbox/streets-v11
+					style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
 					center: [ll.lng, ll.lat], // starting position [lng, lat]
 					zoom: 12, // starting zoom
 				});
-				map.addControl(new mapboxgl.FullscreenControl());
 				const NCObject = {
 					showCompass:true,
 					showZoom:true,
