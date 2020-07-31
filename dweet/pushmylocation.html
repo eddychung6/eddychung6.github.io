@@ -75,8 +75,8 @@ $( document ).ready(function() {
 				alert('Sorry, no position available.');
 			}
 			//first time to get the location 
-			navigator.geolocation.getCurrentPosition(showPosition);
-			function showPosition(position) {
+			//navigator.geolocation.getCurrentPosition(showPosition);
+			/* function showPosition(position) {
 				mapboxgl.accessToken = 'pk.eyJ1IjoiZWRkeWNodW5nIiwiYSI6ImNrZDg3YXptYjA2dHQycnAyaXg0Y2cxY2MifQ.QqgFaTvEVw_obXSHrzDfIw';
 				var ll = new mapboxgl.LngLat(position.coords.longitude,position.coords.latitude);
 				map = new mapboxgl.Map({
@@ -88,7 +88,7 @@ $( document ).ready(function() {
 				console.log("map created");
 				console.log(map);
 				//$("#map").css('display', 'block');
-			}
+			} */
 			//for watchPosition
 			const options = {
 			  enableHighAccuracy: true, 
