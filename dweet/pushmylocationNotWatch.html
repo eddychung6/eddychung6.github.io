@@ -93,7 +93,7 @@ $( document ).ready(function() {
 			const options = {
 			  enableHighAccuracy: true, 
 			  maximumAge: 30000, //max time (within this time period) to refresh caches
-			  timeout: Infinity,//max time to return the data
+			  timeout: 300000,//max time to return the data
 			};
 			const watchID = navigator.geolocation.watchPosition(success, error, options);
 			console.log("watchID No:"+watchID);
